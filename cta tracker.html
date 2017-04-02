@@ -26,5 +26,14 @@
 				</div>
 			</div>
 		</div>
+
+
+		<script type="text/javascript">
+			// Show time on screen (in ID clockField)
+			var d = new Date();
+			var t = d.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+			document.getElementById("clockField").innerHTML=t;
+			
+		</script>
 	</body>
 </html>
