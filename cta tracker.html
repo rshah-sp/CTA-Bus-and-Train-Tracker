@@ -163,12 +163,14 @@
 			var baseURL = '/bustime/api/v2';
 			var requestPredictions = '/getpredictions?';
 			var apiKey = 'key=' + '';
-			var stopID = '&stpid=' + '1198';
+			var stopIDNB = '&stpid=' + '1199';
+			var stopIDSB = '&stpid=' + '1032';
 			var format = '&format=' + 'json';
-			var predictionURL = baseURL+requestPredictions+apiKey+stopID+format;
+			var predictionURLNB = baseURL+requestPredictions+apiKey+stopIDNB+format;
+			var predictionURLSB = baseURL+requestPredictions+apiKey+stopIDSB+format;
 
 			$(document).ready(function(){
-				$.getJSON(predictionURL, function(data){
+				$.getJSON(predictionURLNB, function(data){
 					var busName1 = data["bustime-response"].prd[0].rt;
 					var busID1 = data["bustime-response"].prd[0].vid;
 					var busArr1 = data["bustime-response"].prd[0].prdctdn;
@@ -188,6 +190,21 @@
 					// var busName4 = data["bustime-response"].prd[3].;
 					// var busID4 = data["bustime-response"].prd[3].;
 					// var busArr4 = data["bustime-response"].prd[3].;
+				});
+				$.getJSON(predictionURLSB, function(data){
+					var busName3 =data["bustime-response"].prd[0].rt;
+					var busID3 = data["bustime-response"].prd[0].vid;
+					var busArr3 = data["bustime-response"].prd[0].prdctdn;
+					var busName4 = data["bustime-response"].prd[1].rt;
+					var busID4 = data["bustime-response"].prd[1].vid;
+					var busArr4 = data["bustime-response"].prd[1].prdctdn;
+
+					$("#busNameThree").html(busName3);
+					$("#busIDThree").html(busID3);
+					$("#busArrThree").html(busArr3);
+					$("#busNameFour").html(busName3);
+					$("#busIDFour").html(busID3);
+					$("#busArrFour").html(busArr3);
 				});
 			});
 
