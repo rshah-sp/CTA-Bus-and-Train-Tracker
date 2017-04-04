@@ -171,35 +171,89 @@
 
 			$(document).ready(function(){
 				$.getJSON(busPredictionURLNB, function(data){
-					var busName1 = data["bustime-response"].prd[0].rt;
-					var busID1 = data["bustime-response"].prd[0].vid;
-					var busArr1 = data["bustime-response"].prd[0].prdctdn;
-					var busName2 = data["bustime-response"].prd[1].rt;
-					var busID2 = data["bustime-response"].prd[1].vid;
-					var busArr2 = data["bustime-response"].prd[1].prdctdn;
+					if (data["bustime-response"].hasOwnProperty("error")) {
+						console.log("BR has error " + data["bustime-response"].error[0].msg);
+					}
+					else if (data["bustime-response"].hasOwnProperty("prd")) {
+						if (data["bustime-response"].prd.length > 1) {
+							console.log("Length of BR is greater than 1!");
+							console.log(data["bustime-response"].prd.length);
+							var busName1 = data["bustime-response"].prd[0].rt;
+							var busID1 = data["bustime-response"].prd[0].vid;
+							var busArr1 = data["bustime-response"].prd[0].prdctdn;
+							var busName2 = data["bustime-response"].prd[1].rt;
+							var busID2 = data["bustime-response"].prd[1].vid;
+							var busArr2 = data["bustime-response"].prd[1].prdctdn;
 
-					$("#busNameOne").html(busName1);
-					$("#busIDOne").html(busID1);
-					$("#busArrOne").html(busArr1);
-					$("#busNameTwo").html(busName2);
-					$("#busIDTwo").html(busID2);
-					$("#busArrTwo").html(busArr2);
+							$("#busNameOne").html(busName1);
+							$("#busIDOne").html(busID1);
+							$("#busArrOne").html(busArr1);
+							$("#busNameTwo").html(busName2);
+							$("#busIDTwo").html(busID2);
+							$("#busArrTwo").html(busArr2);
+						}
+						else if (data["bustime-response"].prd.length == 1) {
+							console.log("Length of BR is exactly one!");
+							console.log(data["bustime-response"].prd.length);
+							var busName1 = data["bustime-response"].prd[0].rt;
+							var busID1 = data["bustime-response"].prd[0].vid;
+							var busArr1 = data["bustime-response"].prd[0].prdctdn;
+
+							$("#busNameOne").html(busName1);
+							$("#busIDOne").html(busID1);
+							$("#busArrOne").html(busArr1);
+						}
+						else {
+							console.log("Uh... Length is neither greater nor equal to 1!");
+							console.log(data["bustime-response"].prd.length);
+						}
+					}
+					else {
+						console.log("Uh.... neither Prd nor Err!");
+					}
 
 				});
 				$.getJSON(busPredictionURLSB, function(data){
-					var busName3 =data["bustime-response"].prd[0].rt;
-					var busID3 = data["bustime-response"].prd[0].vid;
-					var busArr3 = data["bustime-response"].prd[0].prdctdn;
-					var busName4 = data["bustime-response"].prd[1].rt;
-					var busID4 = data["bustime-response"].prd[1].vid;
-					var busArr4 = data["bustime-response"].prd[1].prdctdn;
+					if (data["bustime-response"].hasOwnProperty("error")) {
+						console.log("BR has error " + data["bustime-response"].error[0].msg);
+					}
+					else if (data["bustime-response"].hasOwnProperty("prd")) {
+						if (data["bustime-response"].prd.length > 1) {
+							console.log("Length of BR is greater than 1!");
+							console.log(data["bustime-response"].prd.length);
+							var busName3 = data["bustime-response"].prd[0].rt;
+							var busID3 = data["bustime-response"].prd[0].vid;
+							var busArr3 = data["bustime-response"].prd[0].prdctdn;
+							var busName4 = data["bustime-response"].prd[1].rt;
+							var busID4 = data["bustime-response"].prd[1].vid;
+							var busArr4 = data["bustime-response"].prd[1].prdctdn;
 
-					$("#busNameThree").html(busName3);
-					$("#busIDThree").html(busID3);
-					$("#busArrThree").html(busArr3);
-					$("#busNameFour").html(busName3);
-					$("#busIDFour").html(busID3);
-					$("#busArrFour").html(busArr3);
+							$("#busNameThree").html(busName3);
+							$("#busIDThree").html(busID3);
+							$("#busArrThree").html(busArr3);
+							$("#busNameFour").html(busName4);
+							$("#busIDFour").html(busID4);
+							$("#busArrFour").html(busArr4);
+						}
+						else if (data["bustime-response"].prd.length == 1) {
+							console.log("Length of BR is exactly one!");
+							console.log(data["bustime-response"].prd.length);
+							var busName3 = data["bustime-response"].prd[0].rt;
+							var busID3 = data["bustime-response"].prd[0].vid;
+							var busArr3 = data["bustime-response"].prd[0].prdctdn;
+
+							$("#busNameThree").html(busName3);
+							$("#busIDThree").html(busID3);
+							$("#busArrThree").html(busArr3);
+						}
+						else {
+							console.log("Uh... Length is neither greater nor equal to 1!");
+							console.log(data["bustime-response"].prd.length);
+						}
+					}
+					else {
+						console.log("Uh.... neither Prd nor Err!");
+					}
 				});
 			});
 
