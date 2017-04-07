@@ -34,6 +34,14 @@ body {
 	margin-right: 55px;
 }
 
-.spacer {
+.lower-spacer {
 	margin-bottom: 125px;
+}
+
+.upper-spacer {
+	margin-top: 25px;
+}
+
+h1 {
+	font-size: 350%;
 }
