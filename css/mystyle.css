@@ -14,3 +14,22 @@ body {
 .left-padding {
 	padding-left: 99px;
 }
+
+.bus-rows {
+	background-color: #00A1DE;
+	margin-right: 55px;
+	margin-bottom: 15px;
+}
+
+.bottom-margin {
+	margin-bottom: 0px;
+} 
+
+.top-margin {
+	margin-top: 0px;
+}
+
+.train-rows {
+	background-color: #C60C30;
+	margin-right: 55px;
+}
