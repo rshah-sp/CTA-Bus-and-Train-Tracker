@@ -1,0 +1,16 @@
+body {
+	background-color: black;
+	color: white;
+}
+
+#clockField {
+	font-size: 600%;
+}
+
+.station-names {
+	font-size: 375%;
+}
+
+.left-padding {
+	padding-left: 99px;
+}
