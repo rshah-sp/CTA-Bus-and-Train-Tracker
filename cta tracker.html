@@ -161,6 +161,11 @@
 						<img class="img-responsive center-block" src="images\ctaTrainLogo.png" alt="CTA Logo" width="120px" height="120px">
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<h5 class="text-center">Data provided by the Chicago Transit Authority</h5>
+				</div>
+			</div>	
 		</div>
 
 		<script type="text/javascript">
@@ -190,11 +195,21 @@
 							console.log("Length of BR is greater than 1!");
 							console.log(data["bustime-response"].prd.length);
 							var busName1 = data["bustime-response"].prd[0].rt;
-							var busID1 = data["bustime-response"].prd[0].vid;
-							var busArr1 = data["bustime-response"].prd[0].prdctdn;
+							var busID1 = 'Bus # ' + data["bustime-response"].prd[0].vid;
+							if (data["bustime-response"].prd[0].prdctdn === "DUE") {
+								var busArr1 = "ARRIVING";
+							}
+							else {
+								var busArr1 = data["bustime-response"].prd[0].prdctdn + ' MIN';
+							}
 							var busName2 = data["bustime-response"].prd[1].rt;
-							var busID2 = data["bustime-response"].prd[1].vid;
-							var busArr2 = data["bustime-response"].prd[1].prdctdn;
+							var busID2 = 'Bus # ' + data["bustime-response"].prd[1].vid;
+							if (data["bustime-response"].prd[1].prdctdn === "DUE") {
+								var busArr2 = "ARRIVING";
+							}
+							else {
+								var busArr2 = data["bustime-response"].prd[1].prdctdn + ' MIN';
+							}
 
 							$("#busNameOne").html(busName1);
 							$("#busIDOne").html(busID1);
@@ -207,12 +222,23 @@
 							console.log("Length of BR is exactly one!");
 							console.log(data["bustime-response"].prd.length);
 							var busName1 = data["bustime-response"].prd[0].rt;
-							var busID1 = data["bustime-response"].prd[0].vid;
-							var busArr1 = data["bustime-response"].prd[0].prdctdn;
+							var busID1 = 'Bus # ' + data["bustime-response"].prd[0].vid;
+							if (data["bustime-response"].prd[0].prdctdn === "DUE") {
+								var busArr1 = "ARRIVING";
+							}
+							else {
+								var busArr1 = data["bustime-response"].prd[0].prdctdn + ' MIN';
+							}
+							var busName2 = '&zwnj;'
+							var busID2 = '&zwnj;'
+							var busArr2 = '&zwnj;'
 
 							$("#busNameOne").html(busName1);
 							$("#busIDOne").html(busID1);
 							$("#busArrOne").html(busArr1);
+							$("#busNameTwo").html(busName2);
+							$("#busIDTwo").html(busID2);
+							$("#busArrTwo").html(busArr2);
 						}
 						else {
 							console.log("Uh... Length is neither greater nor equal to 1!");
@@ -233,11 +259,21 @@
 							console.log("Length of BR is greater than 1!");
 							console.log(data["bustime-response"].prd.length);
 							var busName3 = data["bustime-response"].prd[0].rt;
-							var busID3 = data["bustime-response"].prd[0].vid;
-							var busArr3 = data["bustime-response"].prd[0].prdctdn;
+							var busID3 = 'Bus # ' + data["bustime-response"].prd[0].vid;
+							if (data["bustime-response"].prd[0].prdctdn == "DUE") {
+								var busArr3 = "ARRIVING";
+							}
+							else {
+								var busArr3 = data["bustime-response"].prd[0].prdctdn + ' MIN';
+							}
 							var busName4 = data["bustime-response"].prd[1].rt;
-							var busID4 = data["bustime-response"].prd[1].vid;
-							var busArr4 = data["bustime-response"].prd[1].prdctdn;
+							var busID4 = 'Bus # ' + data["bustime-response"].prd[1].vid;
+							if (data["bustime-response"].prd[1].prdctdn == "DUE") {
+								var busArr4 = "ARRIVING";
+							}
+							else {
+								var busArr4 = data["bustime-response"].prd[1].prdctdn + ' MIN';
+							}
 
 							$("#busNameThree").html(busName3);
 							$("#busIDThree").html(busID3);
@@ -250,12 +286,23 @@
 							console.log("Length of BR is exactly one!");
 							console.log(data["bustime-response"].prd.length);
 							var busName3 = data["bustime-response"].prd[0].rt;
-							var busID3 = data["bustime-response"].prd[0].vid;
-							var busArr3 = data["bustime-response"].prd[0].prdctdn;
+							var busID3 = 'Bus # ' + data["bustime-response"].prd[0].vid;
+							if (data["bustime-response"].prd[0].prdctdn == "DUE") {
+								var busArr3 = "ARRIVING";
+							}
+							else {
+								var busArr3 = data["bustime-response"].prd[0].prdctdn + ' MIN';
+							}
+							var busName4 = '&zwnj;'
+							var busID4 = '&zwnj;'
+							var busArr4 = '&zwnj;'
 
 							$("#busNameThree").html(busName3);
 							$("#busIDThree").html(busID3);
 							$("#busArrThree").html(busArr3);
+							$("#busNameFour").html(busName4);
+							$("#busIDFour").html(busID4);
+							$("#busArrFour").html(busArr4);
 						}
 						else {
 							console.log("Uh... Length is neither greater nor equal to 1!");
