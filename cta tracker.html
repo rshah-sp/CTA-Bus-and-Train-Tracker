@@ -199,6 +199,9 @@
 							if (data["bustime-response"].prd[0].prdctdn === "DUE") {
 								var busArr1 = "ARRIVING";
 							}
+							else if (data["bustime-response"].prd[0].prdctdn === "DLY") {
+								var busArr1 = "DELAYED";
+							}
 							else {
 								var busArr1 = data["bustime-response"].prd[0].prdctdn + ' MIN';
 							}
@@ -206,6 +209,9 @@
 							var busID2 = 'Bus # ' + data["bustime-response"].prd[1].vid;
 							if (data["bustime-response"].prd[1].prdctdn === "DUE") {
 								var busArr2 = "ARRIVING";
+							}
+							else if (data["bustime-response"].prd[1].prdctdn === "DLY") {
+								var busArr2 = "DELAYED";
 							}
 							else {
 								var busArr2 = data["bustime-response"].prd[1].prdctdn + ' MIN';
@@ -225,6 +231,9 @@
 							var busID1 = 'Bus # ' + data["bustime-response"].prd[0].vid;
 							if (data["bustime-response"].prd[0].prdctdn === "DUE") {
 								var busArr1 = "ARRIVING";
+							}
+							else if (data["bustime-response"].prd[0].prdctdn === "DLY") {
+								var busArr1 = "DELAYED";
 							}
 							else {
 								var busArr1 = data["bustime-response"].prd[0].prdctdn + ' MIN';
@@ -263,6 +272,9 @@
 							if (data["bustime-response"].prd[0].prdctdn == "DUE") {
 								var busArr3 = "ARRIVING";
 							}
+							else if (data["bustime-response"].prd[0].prdctdn === "DLY") {
+								var busArr3 = "DELAYED";
+							}
 							else {
 								var busArr3 = data["bustime-response"].prd[0].prdctdn + ' MIN';
 							}
@@ -270,6 +282,9 @@
 							var busID4 = 'Bus # ' + data["bustime-response"].prd[1].vid;
 							if (data["bustime-response"].prd[1].prdctdn == "DUE") {
 								var busArr4 = "ARRIVING";
+							}
+							else if (data["bustime-response"].prd[1].prdctdn === "DLY") {
+								var busArr4 = "DELAYED";
 							}
 							else {
 								var busArr4 = data["bustime-response"].prd[1].prdctdn + ' MIN';
@@ -289,6 +304,9 @@
 							var busID3 = 'Bus # ' + data["bustime-response"].prd[0].vid;
 							if (data["bustime-response"].prd[0].prdctdn == "DUE") {
 								var busArr3 = "ARRIVING";
+							}
+							else if (data["bustime-response"].prd[0].prdctdn === "DLY") {
+								var busArr3 = "DELAYED";
 							}
 							else {
 								var busArr3 = data["bustime-response"].prd[0].prdctdn + ' MIN';
