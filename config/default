@@ -27,7 +27,7 @@ server {
 	# Make site accessible from http://localhost/
 	# server_name localhost;
 	# server_name ctatracker;
-	  server_name cta.webserver01.com;
+	  server_name cta.webserver01.internal.sheridanpoint.org;
 	location / {
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
@@ -85,7 +85,7 @@ server {
 	index index.html index.htm;
 
 	# Make site accessible from http://localhost/
-	server_name train.webserver01.com;
+	server_name train.webserver01.internal.sheridanpoint.org;
 
 	location / {
 		# First attempt to serve request as file, then
