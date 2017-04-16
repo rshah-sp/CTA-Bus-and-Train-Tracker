@@ -344,8 +344,16 @@
 					}
 				});
 
-				$.getJSON(trainPredictionURL, function(data){
-				}
+				var trainApiKey = '';
+				var trainUrl = '/api/1.0/ttarrivals.aspx?key=' + trainApiKey + '&mapid=41300&outputType=json'
+
+				$.getJSON(trainUrl, function(data){
+					console.log(data["ctatt"].eta[0]);
+					var predictedTime = new Date(data["ctatt"].eta[0].prdt);
+					var requestTime = new Date(date["ctatt"].eta[0].arrT);
+					var diff = (predictedTime - requestTime)/1000/60;
+					console.log("Predicted Arrival is " + diff + 'MIN');
+ 				});
 				
 			});
 
