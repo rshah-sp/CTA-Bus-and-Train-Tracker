@@ -345,14 +345,19 @@
 				});
 
 				var trainApiKey = '';
-				var trainUrl = '/api/1.0/ttarrivals.aspx?key=' + trainApiKey + '&mapid=41300&outputType=json'
+				var mapID = '41300';
+				var trainUrl = '/api/1.0/ttarrivals.aspx?key=' + trainApiKey + '&mapid=' + mapID+ '&outputType=json';
 
 				$.getJSON(trainUrl, function(data){
 					console.log(data["ctatt"].eta[0]);
-					var predictedTime = new Date(data["ctatt"].eta[0].prdt);
-					var requestTime = new Date(date["ctatt"].eta[0].arrT);
-					var diff = (predictedTime - requestTime)/1000/60;
-					console.log("Predicted Arrival is " + diff + 'MIN');
+					function timeDiff(a, b) {
+						var c = new Date(a);
+						var d = new Date(b);
+						return Math.abs((a-b)/1000/60);
+					}
+					var predictedTime1 = (data["ctatt"].eta[0].prdt);
+					var requestTime1 = (data["ctatt"].eta[0].arrT);
+					console.log(timeDiff(predictedTime1, requestTime1) + 'MIN');
  				});
 				
 			});
