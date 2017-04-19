@@ -344,20 +344,188 @@
 					}
 				});
 
+				console.log("GOT HERE! LINE 347")
 				var trainApiKey = '';
 				var mapID = '41300';
-				var trainUrl = '/api/1.0/ttarrivals.aspx?key=' + trainApiKey + '&mapid=' + mapID+ '&outputType=json';
+				var granMapID = '40760';
+				var trainUrl = '/api/1.0/ttarrivals.aspx?key=' + trainApiKey + '&mapid=' + mapID + '&outputType=json';
+				var granTrainUrl = '/api/1.0/ttarrivals.aspx?key=' + trainApiKey + '&mapid=' + granMapID + '&outputType=json';
+
+				function timeDiff(a, b) {
+					var c = new Date(a);
+					var d = new Date(b);
+					return Math.abs((c-d)/1000/60);
+					}				
+					console.log("GOT HERE! LINE 357")
 
 				$.getJSON(trainUrl, function(data){
-					console.log(data["ctatt"].eta[0]);
-					function timeDiff(a, b) {
-						var c = new Date(a);
-						var d = new Date(b);
-						return Math.abs((a-b)/1000/60);
+					console.log(data["ctatt"].eta.length);
+					if (data["ctatt"].errCd == 0) {
+						if (data["ctatt"].eta.length < 1) {
+							console.log("ERROR: The length of ETA Array is < 1" + (data["ctatt"].eta.length));
+						}
+						else if (data["ctatt"].eta.length == 1) {
+							if (data["ctatt"].eta[0].isApp == 1) {
+								trainName1 = data["ctatt"].eta[0].rt;
+								trainID1 = data["ctatt"].eta[0].stpDe;
+								$("#trainNameOne").html(trainName1 + ' Line');
+								$("#trainIDOne").html(trainID1);
+								$("#trainArrOne").html('APPROACHING');
+								$("#trainNameTwo").html('&zwnj;');
+								$("#trainIDTwo").html('&zwnj;');
+								$("#trainArrTwo").html('&zwnj;');
+							}
+							else if (data["ctatt"].eta[0].isDly == 1) {
+								trainName1 = data["ctatt"].eta[0].rt;
+								trainID1 = data["ctatt"].eta[0].stpDe;
+								$("#trainNameOne").html(trainName1 + ' Line');
+								$("#trainIDOne").html(trainID1);
+								$("#trainArrOne").html('DELAYED');
+								$("#trainNameTwo").html('&zwnj;');
+								$("#trainIDTwo").html('&zwnj;');
+								$("#trainArrTwo").html('&zwnj;');
+							}
+							else {
+								console.log("Length of CTA Array is one")
+								trainName1 = data["ctatt"].eta[0].rt;
+								trainID1 = data["ctatt"].eta[0].stpDe;
+								trainArr1 = timeDiff((data["ctatt"].eta[0].prdt), (data["ctatt"].eta[0].arrT));
+								$("#trainNameOne").html(trainName1 + ' Line');
+								$("#trainIDOne").html(trainID1);
+								$("#trainArrOne").html(trainArr1 + ' MIN');
+								$("#trainNameTwo").html('&zwnj;');
+								$("#trainIDTwo").html('&zwnj;');
+								$("#trainArrTwo").html('&zwnj;');
+							}
+						}
+						else if (data["ctatt"].eta.length > 1) {
+							console.log("I am greater than 1, at line 400!");
+							trainName1 = data["ctatt"].eta[0].rt;
+							trainID1 = data["ctatt"].eta[0].stpDe;
+							trainName2 = trainName1 = data["ctatt"].eta[1].rt;
+							trainID2 = data["ctatt"].eta[1].stpDe;
+
+							$("#trainNameOne").html(trainName1 + ' Line');
+							$("#trainIDOne").html(trainID1);
+							$("#trainNameTwo").html(trainName2 + ' Line');
+							$("#trainIDTwo").html(trainID2);
+
+							if ((data["ctatt"].eta[0].isApp) && (data["ctatt"].eta[0].isDly) == 0){
+								trainArr1 = timeDiff((data["ctatt"].eta[0].prdt), (data["ctatt"].eta[0].arrT));
+								console.log("Line 413, " + trainArr1);
+								$("#trainArrOne").html(trainArr1 + ' MIN');
+
+							}
+							else if (data["ctatt"].eta[0].isApp == 1) {
+								$("#trainArrOne").html('APPROACHING');
+							}
+							else if (data["ctatt"].eta[0].isDly == 1) {
+								$("#trainArrOne").html('DELAYED');
+							}
+
+							if ((data["ctatt"].eta[1].isApp) && (data["ctatt"].eta[1].isDly) == 0){
+								trainArr2 = timeDiff((data["ctatt"].eta[1].prdt), (data["ctatt"].eta[1].arrT));
+								$("#trainArrTwo").html(trainArr2 + ' MIN');
+
+							}
+							else if (data["ctatt"].eta[1].isApp == 1) {
+								$("#trainArrTwo").html('APPROACHING');
+							}
+							else if (data["ctatt"].eta[1].isDly == 1) {
+								$("#trainArrTwo").html('DELAYED');
+							}
+
+						}
 					}
-					var predictedTime1 = (data["ctatt"].eta[0].prdt);
-					var requestTime1 = (data["ctatt"].eta[0].arrT);
-					console.log(timeDiff(predictedTime1, requestTime1) + 'MIN');
+					else {
+						console.log("THE ERROR IS HERE!");
+					}
+
+ 				});
+
+ 				$.getJSON(granTrainUrl, function(data){
+					console.log(data["ctatt"].eta.length);
+					if (data["ctatt"].errCd == 0) {
+						if (data["ctatt"].eta.length < 1) {
+							console.log("ERROR: The length of ETA Array is < 1" + (data["ctatt"].eta.length));
+						}
+						else if (data["ctatt"].eta.length == 1) {
+							if (data["ctatt"].eta[0].isApp == 1) {
+								trainName3 = data["ctatt"].eta[0].rt;
+								trainID3 = data["ctatt"].eta[0].stpDe;
+								$("#trainNameThree").html(trainName3 + ' Line');
+								$("#trainIDThree").html(trainID3);
+								$("#trainArrThree").html('APPROACHING');
+								$("#trainNameFour").html('&zwnj;');
+								$("#trainIDFour").html('&zwnj;');
+								$("#trainArrFour").html('&zwnj;');							
+							}
+							else if (data["ctatt"].eta[0].isDly == 1) {
+								trainName3 = data["ctatt"].eta[0].rt;
+								trainID3 = data["ctatt"].eta[0].stpDe;
+								$("#trainNameThree").html(trainName3 + ' Line');
+								$("#trainIDThree").html(trainID3);
+								$("#trainArrThree").html('DELAYED');
+								$("#trainNameFour").html('&zwnj;');
+								$("#trainIDFour").html('&zwnj;');
+								$("#trainArrFour").html('&zwnj;');
+							}
+							else {
+								console.log("Length of CTA Array is one")
+								trainName3 = data["ctatt"].eta[0].rt;
+								trainID3 = data["ctatt"].eta[0].stpDe;
+								trainArr3 = timeDiff((data["ctatt"].eta[0].prdt), (data["ctatt"].eta[0].arrT));
+								$("#trainNameThree").html(trainName3 + ' Line');
+								$("#trainIDThree").html(trainID1);
+								$("#trainArrThree").html(trainArr1 + ' MIN');
+								$("#trainNameFour").html('&zwnj;');
+								$("#trainIDFour").html('&zwnj;');
+								$("#trainArrFour").html('&zwnj;');
+							}
+						}
+						else if (data["ctatt"].eta.length > 1) {
+							console.log("I am greater than 1, at line 400!");
+							trainName3 = data["ctatt"].eta[0].rt;
+							trainID3 = data["ctatt"].eta[0].stpDe;
+							trainName4 = trainName1 = data["ctatt"].eta[1].rt;
+							trainID4 = data["ctatt"].eta[1].stpDe;
+
+							$("#trainNameThree").html(trainName3 + ' Line');
+							$("#trainIDThree").html(trainID3);
+							$("#trainNameFour").html(trainName4 + ' Line');
+							$("#trainIDFour").html(trainID4);
+
+							if ((data["ctatt"].eta[0].isApp) && (data["ctatt"].eta[0].isDly) == 0){
+								trainArr3 = timeDiff((data["ctatt"].eta[0].prdt), (data["ctatt"].eta[0].arrT));
+								console.log("Line 413, " + trainArr3);
+								$("#trainArrThree").html(trainArr3 + ' MIN');
+
+							}
+							else if (data["ctatt"].eta[0].isApp == 1) {
+								$("#trainArrThree").html('APPROACHING');
+							}
+							else if (data["ctatt"].eta[0].isDly == 1) {
+								$("#trainArrThree").html('DELAYED');
+							}
+
+							if ((data["ctatt"].eta[1].isApp) && (data["ctatt"].eta[1].isDly) == 0){
+								trainArr4 = timeDiff((data["ctatt"].eta[1].prdt), (data["ctatt"].eta[1].arrT));
+								$("#trainArrFour").html(trainArr4 + ' MIN');
+
+							}
+							else if (data["ctatt"].eta[1].isApp == 1) {
+								$("#trainArrFour").html('APPROACHING');
+							}
+							else if (data["ctatt"].eta[1].isDly == 1) {
+								$("#trainArrFour").html('DELAYED');
+							}
+
+						}
+					}
+					else {
+						console.log("THE ERROR IS HERE!");
+					}
+
  				});
 				
 			});
