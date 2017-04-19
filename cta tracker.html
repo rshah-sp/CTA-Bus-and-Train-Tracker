@@ -356,7 +356,11 @@
 					var d = new Date(b);
 					return Math.abs((c-d)/1000/60);
 					}				
-					console.log("GOT HERE! LINE 357")
+				
+				function removeService(a) {
+					var c = a.split("Service ");
+					return c;
+				}
 
 				$.getJSON(trainUrl, function(data){
 					console.log(data["ctatt"].eta.length);
@@ -367,7 +371,7 @@
 						else if (data["ctatt"].eta.length == 1) {
 							if (data["ctatt"].eta[0].isApp == 1) {
 								trainName1 = data["ctatt"].eta[0].rt;
-								trainID1 = data["ctatt"].eta[0].stpDe;
+								trainID1 = removeService(data["ctatt"].eta[0].stpDe);
 								$("#trainNameOne").html(trainName1 + ' Line');
 								$("#trainIDOne").html(trainID1);
 								$("#trainArrOne").html('ARRIVING');
@@ -401,9 +405,9 @@
 						else if (data["ctatt"].eta.length > 1) {
 							console.log("I am greater than 1, at line 400!");
 							trainName1 = data["ctatt"].eta[0].rt;
-							trainID1 = data["ctatt"].eta[0].stpDe;
+							trainID1 = removeService(data["ctatt"].eta[0].stpDe);
 							trainName2 = trainName1 = data["ctatt"].eta[1].rt;
-							trainID2 = data["ctatt"].eta[1].stpDe;
+							trainID2 = removeService(data["ctatt"].eta[1].stpDe);
 
 							$("#trainNameOne").html(trainName1 + ' Line');
 							$("#trainIDOne").html(trainID1);
@@ -486,9 +490,9 @@
 						else if (data["ctatt"].eta.length > 1) {
 							console.log("I am greater than 1, at line 400!");
 							trainName3 = data["ctatt"].eta[0].rt;
-							trainID3 = data["ctatt"].eta[0].stpDe;
+							trainID3 = removeService(data["ctatt"].eta[0].stpDe);
 							trainName4 = trainName1 = data["ctatt"].eta[1].rt;
-							trainID4 = data["ctatt"].eta[1].stpDe;
+							trainID4 = removeService(data["ctatt"].eta[1].stpDe);
 
 							$("#trainNameThree").html(trainName3 + ' Line');
 							$("#trainIDThree").html(trainID3);
