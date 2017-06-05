@@ -189,7 +189,7 @@
 				$.getJSON(busPredictionURLNB, function(data){
 					if (data["bustime-response"].hasOwnProperty("error")) {
 						console.log("BR has error " + data["bustime-response"].error[0].msg);
-						$("#busNameOne").html('No Routes Scheduled');
+						$("#busNameOne").html('No Rts Scheduled');
 						$("#busIDOne").html('&zwnj;');
 						$("#busArrOne").html('&zwnj;');
 						$("#busNameTwo").html('&zwnj;');
@@ -268,12 +268,12 @@
 				$.getJSON(busPredictionURLSB, function(data){
 					if (data["bustime-response"].hasOwnProperty("error")) {
 						console.log("BR has error " + data["bustime-response"].error[0].msg);
-						$("#busNameOne").html('No Routes Scheduled');
-						$("#busIDOne").html('&zwnj;');
-						$("#busArrOne").html('&zwnj;');
-						$("#busNameTwo").html('&zwnj;');
-						$("#busIDTwo").html('&zwnj;');
-						$("#busArrTwo").html('&zwnj;');
+						$("#busNameThree").html('No Rts Scheduled');
+						$("#busIDThree").html('&zwnj;');
+						$("#busArrThree").html('&zwnj;');
+						$("#busNameFour").html('&zwnj;');
+						$("#busIDFour").html('&zwnj;');
+						$("#busArrFour").html('&zwnj;');
 					}
 					else if (data["bustime-response"].hasOwnProperty("prd")) {
 						if (data["bustime-response"].prd.length > 1) {
