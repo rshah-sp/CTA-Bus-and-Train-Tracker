@@ -96,6 +96,10 @@ server {
 		proxy_pass http://ctabustracker.com;
 	}
 
+	location /api/1.0/ {
+		proxy_pass http://lapi.transitchicago.com;
+	}
+
 
 	# Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests
 	#location /RequestDenied {
