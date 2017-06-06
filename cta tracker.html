@@ -21,7 +21,7 @@
 			<div class="row lower-spacer">
 				<!-- SPCA Logo -->
 				<div class="col-lg-6 col-md-6 col-sm-6 splogo">
-					<h1>SPCA Logo Placeholder</h1>
+					<!-- <h1>SPCA Logo Placeholder</h1> -->
 				</div>
 				<!-- Show time via JS and justify right -->
 				<div class="col-lg-6 col-md-6 col-sm-6">
@@ -189,7 +189,7 @@
 				$.getJSON(busPredictionURLNB, function(data){
 					if (data["bustime-response"].hasOwnProperty("error")) {
 						console.log("BR has error " + data["bustime-response"].error[0].msg);
-						$("#busNameOne").html('No Rts Scheduled');
+						$("#busNameOne").html('No Arrivals');
 						$("#busIDOne").html('&zwnj;');
 						$("#busArrOne").html('&zwnj;');
 						$("#busNameTwo").html('&zwnj;');
@@ -268,7 +268,7 @@
 				$.getJSON(busPredictionURLSB, function(data){
 					if (data["bustime-response"].hasOwnProperty("error")) {
 						console.log("BR has error " + data["bustime-response"].error[0].msg);
-						$("#busNameThree").html('No Rts Scheduled');
+						$("#busNameThree").html('No Arrivals');
 						$("#busIDThree").html('&zwnj;');
 						$("#busArrThree").html('&zwnj;');
 						$("#busNameFour").html('&zwnj;');
